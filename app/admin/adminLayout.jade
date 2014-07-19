@@ -1,0 +1,27 @@
+// This layout file replaces the default layout file for the /admin path
+doctype html
+html(ng-app="sampleAppAdmin")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= appName
+
+    for cssFile in cssFiles
+      link(rel="stylesheet", href=cssFile)
+
+  body
+    h1= appName + ' Admin Panel'
+
+    div(ng-view)
+
+    for jsFile in jsFiles
+      script(src=jsFile)
+
+    // Preloaded Data
+    script.
+      var preloadedData = !{data};
+
+    if preloadHTML
+      script(type="text/ng-template", id="#{preloadHTMLPath}")
+        != preloadHTML
